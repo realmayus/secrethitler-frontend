@@ -1,0 +1,23 @@
+@import "../../App";
+
+
+.headlineB {
+  color: $indigo;
+  font-family: $merriweather;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0
+}
+
+
+.newsWrapper {
+  max-height: 35vh;
+  overflow: auto;
+  padding-right: 10px;
+  >div {
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
+
+}

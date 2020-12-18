@@ -1,0 +1,39 @@
+@import "../App";
+
+.body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  margin-left: auto;
+  text-align: center;
+}
+
+.sidebar {
+  margin-right: auto;
+  margin-left: 100px;
+  width: 469px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  >h1 {
+    margin-bottom: 100px;
+  }
+}
+
+.track {
+  width: 980px;
+  height: 350px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  text-align: left;
+  >div {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

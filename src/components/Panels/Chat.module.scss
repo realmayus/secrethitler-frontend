@@ -1,0 +1,79 @@
+@import "../../App";
+
+
+.headline {
+  color: $indigo;
+  font-family: $merriweather;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+
+.wrapper {
+  background-color: $background2;
+  padding: 32px 10px 12px;
+  width: 344px;
+  scrollbar-width: thin;
+  scrollbar-color: $background transparent;
+  scroll-behavior: smooth;
+  border-radius: 7px;
+  margin-bottom: 20px;
+}
+
+.textWrapper {
+  max-height: 500px;
+  overflow: auto;
+  padding-right: 10px;
+  overflow-x: hidden;
+  margin: 20px 20px 10px 22px;
+  >div {
+    margin-top: 5px;
+    >p {
+      font-size: 16px;
+      margin: 0;
+      padding: 0 0 0 5px;
+    }
+  }
+}
+
+.msgBoxWrapper {
+  display: flex;
+}
+.msgBox {
+  outline: none;
+  background: $background;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 5px 40px 5px 27px;
+}
+
+.sendButton {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  &:hover {
+    background-color: $background2;
+    >.sendButtonImg {
+      >path {
+        fill: $text;
+      }
+    }
+  }
+}
+
+.sendButtonImg {
+  font-size: 18px;
+  margin-left: -45px;
+  >path {
+    fill: $desert;
+  }
+}

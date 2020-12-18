@@ -1,0 +1,17 @@
+@import "../App";
+
+.button {
+  outline: none;
+  border: none;
+  background-color: $background2;
+  border-radius: 7px;
+  font-family: $merriweather;
+  font-size: 16px;
+  padding: 5px 30px;
+  color: $desert;
+  cursor: pointer;
+  transition: background-color .1s ease-in-out, color .1s ease-in-out;
+  &:hover {
+    color: $text;
+  }
+}

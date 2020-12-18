@@ -1,0 +1,12 @@
+@import "../../App";
+
+.box {
+  background-color: $background2;
+  padding: 32px;
+  width: 300px;
+  scrollbar-width: thin;
+  scrollbar-color: $background transparent;
+  scroll-behavior: smooth;
+  border-radius: 7px;
+  margin-bottom: 20px;
+}

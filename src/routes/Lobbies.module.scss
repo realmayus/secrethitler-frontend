@@ -1,0 +1,50 @@
+@import "../App";
+
+
+.page {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.buttonBox {
+  text-align: center;
+  display: flex;
+  >button {
+    &:first-child {
+      margin-left: auto;
+      margin-right: 20px;
+    }
+    &:last-child {
+      margin-right: auto;
+      margin-left: 20px;
+    }
+  }
+}
+
+
+.games {
+  margin-left: 20px;
+  margin-right: 20px;
+  >div {
+    margin-top: 20px;
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pageTitle {
+  font-family: $merriweather;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.wrapper {
+  padding-bottom: 40px;
+}

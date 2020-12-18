@@ -1,0 +1,59 @@
+@import "../App";
+
+.wordmark {
+  margin: 0;
+  padding: 0 25px 0 0;
+  color: $desert;
+  font-weight: 900;
+  font-family: $merriweather;
+  font-size: 52px;
+  font-style: italic;
+  text-shadow: 1px 1px 1px #BB4F3E,
+  2px  2px  1px #BB4F3E,
+  3px  3px  1px #BB4F3E,
+  4px  4px  1px #BB4F3E,
+  5px  5px  1px #BB4F3E,
+  6px  6px  1px #BB4F3E,
+  7px  7px  1px #BB4F3E,
+  8px  8px  1px #BB4F3E,
+  9px  9px  1px #BB4F3E,
+  10px 10px 1px #BB4F3E,
+  11px 11px 1px #BB4F3E,
+  12px 12px 1px #BB4F3E,
+  13px 13px 1px #BB4F3E,
+  14px 14px 1px #BB4F3E,
+  15px 15px 1px #BB4F3E,
+  16px 16px 1px #BB4F3E,
+  17px 17px 1px #BB4F3E;
+
+  //-webkit-backface-visibility: hidden;
+}
+
+.wordmarkInv {
+  margin: 0;
+  padding: 0 25px 0 0;
+  color: $desert;
+  font-weight: 900;
+  font-family: $merriweather;
+  font-size: 52px;
+  font-style: italic;
+  text-shadow: 1px 1px 1px $background,
+  2px  2px  1px $background,
+  3px  3px  1px $background,
+  4px  4px  1px $background,
+  5px  5px  1px $background,
+  6px  6px  1px $background,
+  7px  7px  1px $background,
+  8px  8px  1px $background,
+  9px  9px  1px $background,
+  10px 10px 1px $background,
+  11px 11px 1px $background,
+  12px 12px 1px $background,
+  13px 13px 1px $background,
+  14px 14px 1px $background,
+  15px 15px 1px $background,
+  16px 16px 1px $background,
+  17px 17px 1px $background;
+
+  //-webkit-backface-visibility: hidden;
+}

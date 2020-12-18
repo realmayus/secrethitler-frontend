@@ -1,0 +1,48 @@
+@import "../../App";
+
+
+.headlineB {
+  color: $indigo;
+  font-family: $merriweather;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0
+}
+
+.statType {
+  font-family: $merriweather;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.stat {
+  font-size: 20px;
+}
+
+.statRow {
+  display: flex;
+  margin-top: 20px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.textLiberal {
+  color: $liberal;
+  font-weight: 700;
+  font-family: $merriweather;
+  margin-left: auto;
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.textFascist {
+  color: $fascist;
+  font-weight: 700;
+  font-family: $merriweather;
+  margin-left: auto;
+  margin-right: 20px;
+  font-size: 20px;
+}

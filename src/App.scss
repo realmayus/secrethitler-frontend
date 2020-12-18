@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Merriweather:wght@700;800;900&display=swap');
+
+$background: #0E141B;
+$background2: #182330;
+
+$text: #fff;
+$desert: #F5E1C4;
+$desertSecondary: #464443;
+$indigo: #4A67F7;
+
+$fascist: #BB4F3E;
+$liberal: #5A9CC4;
+
+$merriweather: 'Merriweather', serif;
+
+* {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: $text;
+
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $background2;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $background2;
+  border-radius: 20px;
+  border: 3px solid $background;
+}
+
+body {
+  background-color: $background;
+  margin: 0;
+
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: $background2 transparent;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: $desert;
+  text-decoration: none;
+  transition: color .1s ease-in-out;
+  &:hover {
+    color: $text
+  }
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}

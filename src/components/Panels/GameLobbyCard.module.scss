@@ -1,0 +1,76 @@
+@import "../../App";
+
+.rightArrow {
+  height: 35px;
+  margin-left: auto;
+  margin-right: 40px;
+}
+
+.blueBox {
+  background-color: $background2;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  width: 840px;
+  display: flex;
+  align-items: center;
+  height: 150px;
+  transition: transform .1s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.01);
+    border: 1px solid $indigo;
+  }
+}
+
+.playerListWrapper {
+  display: flex;
+  margin-top: 15px;
+  >div {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.name {
+  font-family: $merriweather;
+  font-size: 24px;
+  color: $indigo;
+  margin-right: 10px;
+}
+
+
+.currentPlayers {
+  font-size: 48px;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.maxPlayers {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.playerCountWrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  padding: 0 30px;
+}
+
+.centerColumn {
+  //padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+}
+
+.lock {
+  margin-left: 10px;
+  height: 14px;
+}

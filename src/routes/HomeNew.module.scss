@@ -1,0 +1,148 @@
+@import "../App";
+
+.header {
+  background-color: $fascist;
+  height: 70vh;
+}
+
+.curve {
+  position: absolute;
+  >path {
+    width: 100vw;
+  }
+}
+
+.wordmarkWrapper {
+  padding-left: 120px;
+  padding-top: 50px;
+  position: absolute;
+}
+
+.title {
+  font-family: $merriweather;
+  color: $background;
+  font-size: 70px;
+  font-weight: 900;
+  width: 950px;
+  text-align: right;
+}
+
+.headerLeft {
+  text-align: right;
+  width: 950px;
+  margin-right: 100px;
+}
+
+.buttonBox {
+  > button {
+    margin-left: 40px;
+  }
+}
+
+.mainHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.headerRight {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.lizard {
+  height: 60vh;
+}
+
+.footer {
+  height: 30vh;
+}
+
+.footerWrapper {
+  display: flex;
+  align-items: center;
+  width: 940px;
+  height: 90%;
+  margin-left: 10vh;
+}
+
+.blueHeading {
+  font-family: $merriweather;
+  color: $indigo;
+  >a {
+    font-family: $merriweather;
+  }
+}
+
+.rulesSlide {
+  display: flex;
+  height: 97vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.rulesSection {
+  width: 700px;
+}
+.rulesHeadline {
+  font-family: $merriweather;
+}
+
+.table {
+  text-align: center;
+  column-gap: 10px;
+  border-spacing: 0 2px;
+  th {
+    background-color: $background2;
+    border-right: 2px solid $background;
+    padding: 3px 20px;
+    &:not(:last-child) {
+      margin-right: 2px;
+    }
+  }
+  td {
+    padding: 0 10px;
+    &:not(:last-child) {
+      border-right: 2px solid $background2;
+    }
+  }
+}
+
+.arrowWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -40px
+}
+
+.downArrow {
+  color: white;
+  font-size: 32px;
+}
+
+.arrowBounce {
+  animation: bounce 3s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+}
