@@ -88,33 +88,36 @@ export default function HomeNew() {
                         <h1 className={styles.rulesHeadline}>Setup</h1>
                         <p>The 11 Fascist Policy tiles and the 6 Liberal Policy tiles are shuffled into a single Policy deck. Use the table below to determine the distribution of roles.</p>
                         <table className={styles.table}>
-                            <tr>
-                                <th># Players</th>
-                                <th>5</th>
-                                <th>6</th>
-                                <th>7</th>
-                                <th>8</th>
-                                <th>9</th>
-                                <th>10</th>
-                            </tr>
-                            <tr>
-                                <td>Liberals</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>5</td>
-                                <td>6</td>
-                            </tr>
-                            <tr>
-                                <td>Fascists</td>
-                                <td>1 + H</td>
-                                <td>1 + H</td>
-                                <td>2 + H</td>
-                                <td>2 + H</td>
-                                <td>3 + H</td>
-                                <td>3 + H</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th># Players</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                    <th>10</th>
+                                </tr>
+                                <tr>
+                                    <td>Liberals</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                </tr>
+                                <tr>
+                                    <td>Fascists</td>
+                                    <td>1 + H</td>
+                                    <td>1 + H</td>
+                                    <td>2 + H</td>
+                                    <td>2 + H</td>
+                                    <td>3 + H</td>
+                                    <td>3 + H</td>
+                                </tr>
+                            </tbody>
+
                         </table>
                     </div>
                 </div>

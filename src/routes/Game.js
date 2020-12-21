@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import styles from "./Game.module.scss";
 import libTrack from "../assets/tracks/trackLiberal.png";
 import fasTrack5_6 from "../assets/tracks/trackFascist_5-6.png";
-import fasTrack7_8 from "../assets/tracks/trackFascist_7-8.png";
-import fasTrack9_10 from "../assets/tracks/trackFascist_9-10.png";
-import BlueBox from "../components/Panels/BlueBox";
 import Players from "../components/Panels/Players";
 import Chat from "../components/Panels/Chat";
-import VoteCard from "../components/Cards/VoteCard";
 import PolicyCard from "../components/Cards/PolicyCard";
 import Wordmark from "../components/Wordmark";
+import useWebSocket  from 'react-use-websocket';
+import {socketURL} from "../api";
+import {useHistory} from "react-router-dom";
+import {UserContext} from "../App";
 
 export default function Game(props) {
     useEffect(() => {
@@ -18,7 +18,7 @@ export default function Game(props) {
 
     const [lPolicies, setLPolicies] = useState([]);
     const [fPolicies, setFPolicies] = useState([]);
-
+    const history = useHistory();
     const toggleLPolicy = (indexToFlip) => {
         setLPolicies(currentCards =>
             currentCards.map((card, index) => {
@@ -44,6 +44,7 @@ export default function Game(props) {
         setLPolicies((currentPolicies) => [...currentPolicies, {
             flipped: false
         }])
+
     }
     const spawnFPolicy = () => {
         setFPolicies((currentPolicies) => [...currentPolicies, {
@@ -51,14 +52,70 @@ export default function Game(props) {
         }])
     }
 
+    const [action, setAction] = useState(undefined);
+
+    // const {
+    //     sendMessage
+    // } = useWebSocket(socketURL, {
+    //     onOpen: () => {
+    //         console.log("opened ws")
+    //     },
+    //     shouldReconnect: () => true,
+    //     onMessage: (event) => handleWSMessage(event)
+    // })
+    //
+    // const handleWSMessage = (event) => {
+    //     const msg = JSON.parse(event.data);
+    //     console.log(msg);
+    //
+    // }
+
+    const userContext = useContext(UserContext);
+    if(!userContext.loggedIn) {
+        history.push("/login/" + encodeURI("game/" + props.match.params.gameID))
+
+        return (
+            <div className={styles.body}>
+                <h3>Checking if you're logged in...</h3>
+            </div>
+        )
+    }
     return (
         <div className={styles.body}>
             <div className={styles.game}>
-                <h2 className={styles.action}>Legislative Session</h2>
-                <p className={styles.actionDescription}>The President and Chancellor now work together to enact a new policy.</p>
-                <h3 className={styles.role}>You are: <span className={styles.Liberal}>Liberal</span></h3>
-                <button style={{color: "#000000"}} onClick={spawnLPolicy}>Spawn Liberal policy</button>
-                <button style={{color: "#000000"}} onClick={spawnFPolicy}>Spawn Fascist policy</button>
+
+                { action === "nomination" &&
+                <div>
+                    <h2 className={styles.action}>Legislative Session</h2>
+                    <p className={styles.actionDescription}>The President and Chancellor now work together to enact a new policy.</p>
+                    <h3 className={styles.role}>You are: <span className={styles.Liberal}>Liberal</span></h3>
+                    <button style={{color: "#000000"}} onClick={spawnLPolicy}>Spawn Liberal policy</button>
+                    <button style={{color: "#000000"}} onClick={spawnFPolicy}>Spawn Fascist policy</button>
+                </div>
+                }
+
+                { action === "election" &&
+                    <div>
+                        <h2 className={styles.action}>Legislative Session</h2>
+                        <p className={styles.actionDescription}>The President and Chancellor now work together to enact a new policy.</p>
+                        <h3 className={styles.role}>You are: <span className={styles.Liberal}>Liberal</span></h3>
+                        <button style={{color: "#000000"}} onClick={spawnLPolicy}>Spawn Liberal policy</button>
+                        <button style={{color: "#000000"}} onClick={spawnFPolicy}>Spawn Fascist policy</button>
+                    </div>
+                }
+
+                { action === "legislative" &&
+                <div>
+                    <h2 className={styles.action}>Legislative Session</h2>
+                    <p className={styles.actionDescription}>The President and Chancellor now work together to enact a new policy.</p>
+                    <h3 className={styles.role}>You are: <span className={styles.Liberal}>Liberal</span></h3>
+                    <button style={{color: "#000000"}} onClick={spawnLPolicy}>Spawn Liberal policy</button>
+                    <button style={{color: "#000000"}} onClick={spawnFPolicy}>Spawn Fascist policy</button>
+                </div>
+                }
+
+
+
                 <div>
                     <div style={{backgroundImage: `url(${libTrack})`}} className={styles.track}>
                         {

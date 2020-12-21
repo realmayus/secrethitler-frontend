@@ -1,0 +1,31 @@
+@import "../../App";
+
+.modal {
+  width: 500px;
+  background-color: $background;
+  outline: none;
+  border-radius: 7px;
+  padding: 20px;
+  z-index: 11;
+  top: 0;
+  code {
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    background-color: $background2;
+  }
+}
+
+.overlay {
+  z-index: 10;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
