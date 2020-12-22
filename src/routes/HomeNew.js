@@ -1,5 +1,5 @@
 import Wordmark from "../components/Wordmark";
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./HomeNew.module.scss";
 import Button from "../components/Button";
 import lizard from "../assets/lizardTitle.jpg";
@@ -7,17 +7,24 @@ import { FullPage, Slide } from 'react-full-page';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowDown} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router-dom";
+import {ModalContext} from "../App";
+import ButtonHalf from "../components/ButtonHalf";
+import ProfileDropdown from "../components/Minor/ProfileDropdown";
 
 export default function HomeNew() {
     const history = useHistory();
-
+    const modalContext = useContext(ModalContext);
     return(
         <FullPage duration={400}>
             <Slide>
                 <div className={styles.header}>
+                    <div className={styles.profileDropdown}>
+                        <ProfileDropdown/>
+                    </div>
                     <div className={styles.wordmarkWrapper}>
                         <Wordmark inverted={true}/>
                     </div>
+
                     <div className={styles.mainHeader}>
                         <div className={styles.headerLeft}>
                             <h1 className={styles.title}>Can you stem the rising tide of Fascism?</h1>
@@ -150,13 +157,20 @@ export default function HomeNew() {
                     <FontAwesomeIcon icon={faArrowDown} className={styles.downArrow}/>
                 </div>
             </Slide>
-            <Slide className={styles.rulesSlide}>
-                <div className={styles.rulesSection}>
-                    <h1 className={styles.rulesHeadline}>(…) Gameplay</h1>
-                    <h2 className={styles.subheading}>Legislative Session</h2>
-                    <p>During the Legislative Session, the President and Chancellor work together to enact a new Policy in secret. The President draws the top three tiles from the Policy deck, looks at them in secret, and discards one tile face down into the Discard pile. The remaining two tiles go to the Chancellor, who looks in secret, discards one Policy tile face down, and enacts the remaining Policy by placing the tile face up on the corresponding track.</p>
+            <Slide >
+                <div className={styles.rulesSlide}>
+                    <div className={styles.rulesSection}>
+                        <h1 className={styles.rulesHeadline}>(…) Gameplay</h1>
+                        <h2 className={styles.subheading}>Legislative Session</h2>
+                        <p>During the Legislative Session, the President and Chancellor work together to enact a new Policy in secret. The President draws the top three tiles from the Policy deck, looks at them in secret, and discards one tile face down into the Discard pile. The remaining two tiles go to the Chancellor, who looks in secret, discards one Policy tile face down, and enacts the remaining Policy by placing the tile face up on the corresponding track.</p>
 
-                    <h2 className={styles.subheading}>Executive Action</h2>
+                        <h2 className={styles.subheading}>Executive Action</h2>
+                    </div>
+
+                </div>
+                <div className={styles.arrowWrapper}>
+                    <button className={styles.aboutButton} onClick={() => modalContext.setOpenModal("about")}>About</button>
+                    <button className={styles.aboutButton} onClick={() => modalContext.setOpenModal("report")}>Report a bug</button>
                 </div>
             </Slide>
         </FullPage>

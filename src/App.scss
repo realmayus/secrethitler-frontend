@@ -65,3 +65,19 @@ a {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
+
+button {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: unset;
+  color: $desert;
+  cursor: pointer;
+  transition: background-color .1s ease-in-out, color .1s ease-in-out;
+  &:hover {
+    color: $text;
+  }
+}
+h3 {
+  font-size: 19px;
+}

@@ -6,6 +6,12 @@ import {checkIfLoggedIn} from "./api";
 import InfoBar from "./components/Minor/InfoBar";
 import {discordLink} from "./consts";
 import AlertBox from "./components/modal/AlertBox";
+import About from "./components/modal/About";
+import Report from "./components/modal/Report";
+import {handleRequestError} from "./util";
+import SignIn from "./components/modal/SignIn";
+import Register from "./components/modal/Register";
+import Forgot from "./components/modal/Forgot";
 
 
 export const UserContext = createContext(null);
@@ -38,13 +44,7 @@ function App() {
             console.log(res);
             if(res.status == null) {
                 setInfo({message: "Couldn't connect to server",
-                    moreOnClick: () => showAlert("Couldn't connect to server",
-                        <div>
-                            <p>The following error occurred: </p>
-                            <code>{String(res)}</code>
-                            <p>Check your browser's console (hit F12) for more details. You can get support at: <a href={discordLink}>{discordLink}</a></p>
-                        </div>
-                    ),
+                    moreOnClick: () => handleRequestError(res, showAlert),
                     msgType: "warning"
                 });
             } else {
@@ -69,7 +69,11 @@ function App() {
                     <AlertBox headline={alertBoxDetails.headline}>
                         {alertBoxDetails.content}
                     </AlertBox>
-
+                    <About/>
+                    <SignIn/>
+                    <Register/>
+                    <Forgot/>
+                    <Report/>
                     <Router/>
                 </UserContext.Provider>
             </ModalContext.Provider>

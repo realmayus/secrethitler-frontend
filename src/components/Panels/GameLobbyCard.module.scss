@@ -16,8 +16,13 @@
   height: 150px;
   transition: transform .1s ease-in-out;
   cursor: pointer;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+
   &:hover {
-    transform: scale(1.01);
+    //transform: scale(1.01);
+    //zoom: 110%;
     border: 1px solid $indigo;
   }
 }
@@ -74,3 +79,4 @@
   margin-left: 10px;
   height: 14px;
 }
+

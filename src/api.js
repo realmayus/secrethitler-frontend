@@ -19,6 +19,19 @@ export const login = async (username, password) => {
     })
 }
 
+export const requestTemporaryAccount = async () => {
+    return fetch(apiURL + "/auth/temp", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' }
+    }).then(res => {
+        if(res.status >= 200 && res.status <= 299) {
+            return res.json();
+        } else {
+            return Promise.reject(res.status);
+        }
+    })
+}
+
 export const checkIfLoggedIn = async () => {
     return fetch(apiURL + "/auth/checkLoginStatus", {
         method: "GET",

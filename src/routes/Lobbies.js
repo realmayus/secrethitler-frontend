@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import styles from "./Lobbies.module.scss";
 import Wordmark from "../components/Wordmark";
 import {useHistory} from "react-router-dom";
@@ -7,6 +7,8 @@ import Stats from "../components/Panels/Stats";
 import News from "../components/Panels/News";
 import ButtonHalf from "../components/ButtonHalf";
 import Filters from "../components/Panels/Filters";
+import {ModalContext} from "../App";
+import SignInDecision from "../components/modal/SignInDecision";
 
 
 const games = [
@@ -216,9 +218,14 @@ const games = [
 
 export default function Lobbies() {
     const history = useHistory();
+    const modalContext = useContext(ModalContext);
+
+    const [selectedGameId, setSelectedGameId] = useState(null);
+
 
     const openGame = (id) => {
-
+        setSelectedGameId(id);
+        modalContext.setOpenModal("signInDecision")
     }
 
     return(
@@ -245,7 +252,7 @@ export default function Lobbies() {
                 <div className={styles.games}>
                     {
                         games.map((item, index) => (
-                            <GameLobbyCard key={index}　onClick={() => history.push("/game/" + item.gameID)} author={item.author} id={item.gameID} name={item.name} currentPlayers={item.currentPlayers} joinedPlayers={item.joinedPlayers} maxPlayers={item.maxPlayers} locked={item.locked}/>
+                            <GameLobbyCard key={index}　onClick={() => openGame(item.gameID)} author={item.author} id={item.gameID} name={item.name} currentPlayers={item.currentPlayers} joinedPlayers={item.joinedPlayers} maxPlayers={item.maxPlayers} locked={item.locked}/>
                         ))
                     }
                 </div>
@@ -253,6 +260,7 @@ export default function Lobbies() {
                     <Stats/>
                     <News/>
                 </div>
+                <SignInDecision gameID={selectedGameId}/>
             </div>
         </div>
     )

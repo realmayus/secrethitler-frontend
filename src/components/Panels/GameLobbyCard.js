@@ -7,7 +7,7 @@ import Lock from "../../assets/lock.svg";
 
 export default function GameLobbyCard({gameID, name, author, currentPlayers, maxPlayers, joinedPlayers, onClick, locked}) {
     return(
-        <div className={styles.blueBox} onClick={() => onClick(gameID)}>
+        <button className={styles.blueBox} onClick={() => onClick(gameID)}>
             <div className={styles.playerCountWrapper}>
                 <div>
                     <span className={styles.currentPlayers}>{currentPlayers}</span> <span className={styles.maxPlayers}>of {maxPlayers}</span>
@@ -15,7 +15,7 @@ export default function GameLobbyCard({gameID, name, author, currentPlayers, max
             </div>
             <div className={styles.centerColumn}>
                 <div className={styles.nameRow}>
-                    <span className={styles.name}>{name}</span> <span className={styles.author}>{author.username}</span> { locked && <img src={Lock} className={styles.lock}/> }
+                    <span className={styles.name}>{name}</span> <span className={styles.author}>{author.username}</span> { locked && <img alt="Protected by password" src={Lock} className={styles.lock}/> }
                 </div>
                 <div className={styles.playerListWrapper}>
                     {
@@ -27,6 +27,6 @@ export default function GameLobbyCard({gameID, name, author, currentPlayers, max
 
             </div>
             <img src={RightArrow} alt="Open Game" className={styles.rightArrow}/>
-        </div>
+        </button>
     )
 }
