@@ -37,10 +37,11 @@ export function useOutsideAlerter(ref, onOutsideClick) {
 
 
 export function handleRequestError(err, showAlert) {
+    console.log(err)
     showAlert(err.status == null ? "Couldn't connect to server" : "An error occurred",
         <div>
             <p>The following error occurred: </p>
-            <code>{String(err)}</code>
+            <code>{err.status == null ? String(err) : `Code: ${err.status}; Text: ${err.statusText}`}</code>
             <p>Check your browser's console (hit F12) for more details. You can get support at: <a href={discordLink}>{discordLink}</a></p>
         </div>
     )

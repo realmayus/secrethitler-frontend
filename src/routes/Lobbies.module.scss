@@ -6,7 +6,21 @@
   justify-content: center;
 }
 
-
+.wordmarkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $fascist;
+  width: 840px;
+  height: 150px;
+  border-radius: 0 0 7px 7px;
+  position: relative;
+  >h1 {
+    margin-top: -10px;
+  }
+  >div {
+  }
+}
 
 .buttonBox {
   text-align: center;
@@ -36,7 +50,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 20px;
 }
 
 .pageTitle {
@@ -48,3 +61,4 @@
 .wrapper {
   padding-bottom: 40px;
 }
+

@@ -18,9 +18,6 @@ export default function HomeNew() {
         <FullPage duration={400}>
             <Slide>
                 <div className={styles.header}>
-                    <div className={styles.profileDropdown}>
-                        <ProfileDropdown/>
-                    </div>
                     <div className={styles.wordmarkWrapper}>
                         <Wordmark inverted={true}/>
                     </div>

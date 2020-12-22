@@ -3,7 +3,7 @@ import styles from "./SignIn.module.scss";
 import Modal from "react-modal";
 import {ModalContext, UserContext} from "../../App";
 import ButtonHalf from "../ButtonHalf";
-import {requestTemporaryAccount} from "../../api";
+import {login, requestTemporaryAccount} from "../../api";
 import {handleRequestError} from "../../util";
 import Textbox from "../Input/Textbox";
 
@@ -23,6 +23,7 @@ export default function SignIn(props) {
     const resetFields = () => {
         setUsername("");
         setPassword("");
+        setError(undefined);
     }
 
     useEffect(() => {
@@ -31,9 +32,24 @@ export default function SignIn(props) {
         }
     }, [modalContext.openModal])
 
+    const submit = () => {
+        login(username, password).then( res => {
+                userContext.setUserData(res);
+                userContext.setLoggedIn(true);
+                closeModal();
+            },err => {
+                if (err.status == null || !(err.status >= 400 && err.status <= 499)) {
+                    handleRequestError(err, modalContext.showAlert)
+                } else {
+                    err.json().then(json => setError(json.error));
+                }
+            }
+        )
+    }
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(undefined);
 
     return(
         <Modal
@@ -45,6 +61,11 @@ export default function SignIn(props) {
         >
             <h2 className={styles.headline}>Sign In</h2>
             <p>Don't want to create an account? Play with a <button>temporary account</button></p>
+            { error != null &&
+            <div className={styles.error}>
+                <p>{error}</p>
+            </div>
+            }
             <div className={styles.inputs}>
                 <Textbox label={"Username"} type={"text"} onChange={(e) => setUsername(e.target.value)} value={username}/>
                 <Textbox label={"Password"} type={"password"} onChange={(e) => setPassword(e.target.value)} value={password}/>
@@ -52,14 +73,8 @@ export default function SignIn(props) {
             </div>
 
             <div className={styles.buttonBox}>
-                <ButtonHalf text="Sign In" onClick={() => {
-                    requestTemporaryAccount().catch(err => handleRequestError(err, modalContext.showAlert)).then( res => {
-                            userContext.setUserData(res);
-                            userContext.setLoggedIn(true);
-                        }
-                    )
-                }}/>
-                    <button onClick={() => modalContext.setOpenModal("signUp")}>Sign Up</button>
+                <ButtonHalf text="Sign In" onClick={submit}/>
+                <button onClick={() => modalContext.setOpenModal("signUp")}>Sign Up</button>
             </div>
         </Modal>
     )

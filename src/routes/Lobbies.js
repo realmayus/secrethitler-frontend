@@ -9,6 +9,7 @@ import ButtonHalf from "../components/ButtonHalf";
 import Filters from "../components/Panels/Filters";
 import {ModalContext} from "../App";
 import SignInDecision from "../components/modal/SignInDecision";
+import ProfileDropdown from "../components/Minor/ProfileDropdown";
 
 
 const games = [
@@ -230,9 +231,14 @@ export default function Lobbies() {
 
     return(
         <div className={styles.wrapper}>
+            <div className={styles.profileDropdown}>
+                <ProfileDropdown/>
+            </div>
             <div className={styles.header}>
                 <div>
-                    <Wordmark inverted={false} />
+                    <div className={styles.wordmarkWrapper}>
+                        <Wordmark inverted={true} />
+                    </div>
                     <h3 className={styles.pageTitle}>Lobbies</h3>
                     <div className={styles.buttonBox}>
                         <ButtonHalf text="Back" onClick={() => history.push("/")}/>

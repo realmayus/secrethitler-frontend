@@ -6,15 +6,51 @@ export const login = async (username, password) => {
     return fetch(apiURL + "/auth/login", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
             username: username,
             password: password
         })
     }).then(res => {
+        console.log(res)
         if(res.status >= 200 && res.status <= 299) {
             return res.json();
         } else {
-            return Promise.reject(res.status);
+            return Promise.reject(res);
+        }
+    })
+}
+
+export const signup = async (email, username, password) => {
+    return fetch(apiURL + "/auth/signup", {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+            email: email,
+            username: username,
+            password: password
+        })
+    }).then(res => {
+        console.log(res)
+        if(res.status >= 200 && res.status <= 299) {
+            return res.json();
+        } else {
+            return Promise.reject(res);
+        }
+    })
+}
+
+export const signout = async () => {
+    return fetch(apiURL + "/auth/logout", {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    }).then(res => {
+        if(res.status >= 200 && res.status <= 299) {
+            return "yay";
+        } else {
+            return Promise.reject(res);
         }
     })
 }
@@ -25,22 +61,25 @@ export const requestTemporaryAccount = async () => {
         headers: { 'Content-Type': 'application/json' }
     }).then(res => {
         if(res.status >= 200 && res.status <= 299) {
+            console.log("OK")
             return res.json();
         } else {
-            return Promise.reject(res.status);
+            console.log("Not OK")
+            return Promise.reject(res);
         }
     })
 }
 
 export const checkIfLoggedIn = async () => {
     return fetch(apiURL + "/auth/checkLoginStatus", {
+        credentials: 'include',
         method: "GET",
         headers: { 'Content-Type': 'application/json' }
     }).then(res => {
         if(res.status >= 200 && res.status <= 299) {
             return res.json();
         } else {
-            return Promise.reject(res.status);
+            return Promise.reject(res);
         }
     })
 

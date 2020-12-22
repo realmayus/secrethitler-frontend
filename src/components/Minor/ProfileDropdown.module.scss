@@ -1,7 +1,10 @@
 @import "../../App";
 
 .outerWrapper {
-  position: relative;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+
 }
 .innerWrapper {
   border: none;
@@ -13,6 +16,8 @@
   >span {
     color: $desert;
     margin-right: 5px;
+    font-weight: 500;
+    font-size: 18px;
   }
 }
 

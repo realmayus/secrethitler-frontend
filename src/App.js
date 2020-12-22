@@ -12,6 +12,7 @@ import {handleRequestError} from "./util";
 import SignIn from "./components/modal/SignIn";
 import Register from "./components/modal/Register";
 import Forgot from "./components/modal/Forgot";
+import ProfileDropdown from "./components/Minor/ProfileDropdown";
 
 
 export const UserContext = createContext(null);
@@ -38,20 +39,21 @@ function App() {
                 if (res.isLoggedIn) {
                     console.log("Already logged in.")
                     setLoggedIn(true);
+                    setUserData(res.user);
                 }
-            }
-        ).catch(res => {
-            console.log(res);
-            if(res.status == null) {
-                setInfo({message: "Couldn't connect to server",
-                    moreOnClick: () => handleRequestError(res, showAlert),
-                    msgType: "warning"
-                });
-            } else {
-                console.log("Not already logged in.")
-            }
-            setLoggedIn(false);
-        })
+            },
+            err => {
+                console.log(err);
+                if(err.status == null) {
+                    setInfo({message: "Couldn't connect to server",
+                        moreOnClick: () => handleRequestError(err, showAlert),
+                        msgType: "warning"
+                    });
+                } else {
+                    console.log("Not already logged in.")
+                }
+                setLoggedIn(false);
+            })
     }
 
     useEffect(() => {
@@ -74,6 +76,8 @@ function App() {
                     <Register/>
                     <Forgot/>
                     <Report/>
+
+                    <ProfileDropdown/>
                     <Router/>
                 </UserContext.Provider>
             </ModalContext.Provider>
