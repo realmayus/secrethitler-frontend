@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import styles from "./Lobbies.module.scss";
 import Wordmark from "../components/Wordmark";
 import {useHistory} from "react-router-dom";
@@ -7,7 +7,7 @@ import Stats from "../components/Panels/Stats";
 import News from "../components/Panels/News";
 import ButtonHalf from "../components/ButtonHalf";
 import Filters from "../components/Panels/Filters";
-import {ModalContext} from "../App";
+import {ModalContext, UserContext} from "../App";
 import SignInDecision from "../components/modal/SignInDecision";
 import ProfileDropdown from "../components/Minor/ProfileDropdown";
 
@@ -19,7 +19,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 3,
         maxPlayers: 5,
         joinedPlayers: [
             {
@@ -36,7 +36,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 4,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -52,7 +52,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 8,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -69,7 +69,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 5,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -86,7 +86,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 6,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -103,7 +103,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 8,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -120,7 +120,24 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 8,
+        maxPlayers: 10,
+        joinedPlayers: [
+            {
+                username: "mayu",
+                avatar: "https://i.imgur.com/ipvRMO6.png"
+            }
+        ],
+        locked: false
+
+    },
+    {
+        gameID: "odijfgpdofijg",
+        name: "test",
+        author: {
+            username: "mayu"
+        },
+        currentPlayers: 4,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -154,7 +171,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 9,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -171,7 +188,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
+        currentPlayers: 3,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -188,24 +205,7 @@ const games = [
         author: {
             username: "mayu"
         },
-        currentPlayers: 1,
-        maxPlayers: 10,
-        joinedPlayers: [
-            {
-                username: "mayu",
-                avatar: "https://i.imgur.com/ipvRMO6.png"
-            }
-        ],
-        locked: false
-
-    },
-    {
-        gameID: "odijfgpdofijg",
-        name: "test",
-        author: {
-            username: "mayu"
-        },
-        currentPlayers: 1,
+        currentPlayers: 6,
         maxPlayers: 10,
         joinedPlayers: [
             {
@@ -220,13 +220,23 @@ const games = [
 export default function Lobbies() {
     const history = useHistory();
     const modalContext = useContext(ModalContext);
-
-    const [selectedGameId, setSelectedGameId] = useState(null);
+    const userContext = useContext(UserContext);
 
 
     const openGame = (id) => {
-        setSelectedGameId(id);
-        modalContext.setOpenModal("signInDecision")
+        if(!userContext.loggedIn) {
+            modalContext.setOpenModal("signInDecision")
+        } else {
+            if(id != null) {
+                history.push("/game/" + id)
+            } else {
+                const freeGames = games.filter(game => (game.currentPlayers < game.maxPlayers))
+                const bestGame = freeGames.sort((a, b) => a.currentPlayers < b.currentPlayers ? 1 : -1)[0]
+                if(bestGame != null) {
+                    history.push("/game/" + bestGame.gameID)
+                }
+            }
+        }
     }
 
     return(
@@ -242,7 +252,7 @@ export default function Lobbies() {
                     <h3 className={styles.pageTitle}>Lobbies</h3>
                     <div className={styles.buttonBox}>
                         <ButtonHalf text="Back" onClick={() => history.push("/")}/>
-                        <ButtonHalf text="Quick Join" onClick={() => history.push("/game/quick")}/>
+                        <ButtonHalf text="Quick Join" onClick={() => openGame()}/>
                         <ButtonHalf text="Create" onClick={() => history.push("/game/create")}/>
                     </div>
 
@@ -266,7 +276,7 @@ export default function Lobbies() {
                     <Stats/>
                     <News/>
                 </div>
-                <SignInDecision gameID={selectedGameId}/>
+                <SignInDecision/>
             </div>
         </div>
     )
