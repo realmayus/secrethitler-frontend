@@ -4,15 +4,16 @@ import {ModalContext, UserContext} from "../../App";
 import dropdownArrow from "../../assets/dropdownArrow.svg";
 import {handleRequestError, useOutsideAlerter} from "../../util";
 import {signout} from "../../api";
+import {useLocation} from "react-router-dom";
 
 export default function ProfileDropdown(props) {
     const userContext = useContext(UserContext);
     const modalContext = useContext(ModalContext);
     const [expanded, setExpanded] = useState(false);
     const wrapperRef = useRef(null);
-
+    const location = useLocation();
     useOutsideAlerter(wrapperRef, () => setExpanded(false))
-
+    if (location.pathname.startsWith("/g") || location.pathname.startsWith("/game")) return <></>
     return (
         <div className={styles.outerWrapper} ref={wrapperRef}>
             <button className={styles.innerWrapper} onClick={() => setExpanded(!expanded)}>

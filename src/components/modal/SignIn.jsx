@@ -35,6 +35,7 @@ export default function SignIn(props) {
     const submit = () => {
         login(username, password).then( res => {
                 userContext.setUserData(res);
+                userContext.setToken(res.token);
                 userContext.setLoggedIn(true);
                 closeModal();
             },err => {

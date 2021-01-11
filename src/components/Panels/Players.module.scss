@@ -12,10 +12,19 @@
 .wrapper {
   background-color: $background2;
   padding: 32px;
-  width: 300px;
+  width: 356px;
   scrollbar-width: thin;
   scrollbar-color: $background transparent;
   scroll-behavior: smooth;
   border-radius: 7px;
   margin-bottom: 20px;
+
+}
+
+.avatars {
+  margin-top: 20px;
+  display: flex;
+  >div {
+    margin-right: 10px;
+  }
 }

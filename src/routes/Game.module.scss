@@ -5,18 +5,21 @@
   width: 100vw;
   height: 100vh;
   justify-content: center;
-  align-items: center;
 }
 
 .game {
   margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar {
-  margin-right: auto;
-  margin-left: 100px;
-  width: 469px;
+  width: 535px;
+  padding: 0 100px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -32,4 +35,25 @@
   background-repeat: no-repeat;
   position: relative;
   text-align: left;
+}
+.Liberal {
+  color: $liberal;
+}
+
+.Fascist, .Hitler {
+  color: $fascist;
+}
+
+.gameInfo {
+  height: 150px;
+}
+.wordmarkWrapper {
+  background-color: $fascist;
+  border-radius: 0 0 7px 7px;
+  margin-bottom: 20px;
+  height: 150px;
+  width: 535px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

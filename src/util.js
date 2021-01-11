@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {discordLink} from "./consts";
 
 export function trimString(str, maxLen) {
@@ -48,3 +48,26 @@ export function handleRequestError(err, showAlert) {
 }
 
 export const emailValidationRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+export const useAudio = url => {
+    const [audio] = useState(new Audio(url));
+    const [playing, setPlaying] = useState(false);
+
+    const toggle = () => setPlaying(!playing);
+
+    useEffect(() => {
+            playing ? audio.play() : audio.pause();
+        },
+        [audio, playing]
+    );
+
+    useEffect(() => {
+        audio.addEventListener('ended', () => setPlaying(false));
+        return () => {
+            audio.removeEventListener('ended', () => setPlaying(false));
+        };
+    }, [audio]);
+
+    return [playing, toggle];
+};
+

@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./GameLobbyCard.module.scss";
 import {populateArrayToLength} from "../../util";
 import ProfileCircle from "../Minor/ProfileCircle";
 import RightArrow from "../../assets/rightArrow.svg";
 import Lock from "../../assets/lock.svg";
+import {UserContext} from "../../App";
 
 export default function GameLobbyCard({gameID, name, author, currentPlayers, maxPlayers, joinedPlayers, onClick, locked}) {
+    const userContext = useContext(UserContext);
     return(
         <button className={styles.blueBox} onClick={() => onClick(gameID)}>
             <div className={styles.playerCountWrapper}>
@@ -20,7 +22,7 @@ export default function GameLobbyCard({gameID, name, author, currentPlayers, max
                 <div className={styles.playerListWrapper}>
                     {
                         populateArrayToLength(joinedPlayers, maxPlayers).map((item, index) => (
-                            <ProfileCircle player={item} key={index}/>
+                            <ProfileCircle player={userContext.getOtherUserData(item)} key={index}/>
                         ))
                     }
                 </div>

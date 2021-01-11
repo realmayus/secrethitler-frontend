@@ -1,6 +1,38 @@
 export const apiURL = "http://localhost:5000";
-export const socketURL = "http://localhost:5000";
+export const socketURL = "ws://localhost:5000";
 
+
+export const getLobbies = async () => {
+    return fetch(apiURL + "/game/lobbies", {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    }).then(res => {
+        console.log(res)
+        if(res.status >= 200 && res.status <= 299) {
+            return res.json();
+        } else {
+            return Promise.reject(res);
+        }
+    })
+}
+export const sendChatMessage = async (message) => {
+    return fetch(apiURL + "/game/sendMessage", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+            message
+        })
+    }).then(res => {
+        console.log(res)
+        if(res.status >= 200 && res.status <= 299) {
+            return res.json();
+        } else {
+            return Promise.reject(res);
+        }
+    })
+}
 
 export const login = async (username, password) => {
     return fetch(apiURL + "/auth/login", {
@@ -85,28 +117,34 @@ export const checkIfLoggedIn = async () => {
 
 }
 
-export const createGame = async (name, minPlayers, maxPlayers, token) => {
+export const createGame = async (name, minPlayers, maxPlayers) => {
     return fetch(apiURL + "/game/create", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
             name,
             minPlayers,
-            maxPlayers,
-            token
+            maxPlayers
         })
     }).then(res => res.json())
 }
 
-export const joinGame = async (gameID, token) => {
-     return fetch(apiURL + "http://localhost:5000/game/join", {
+export const joinGame = async (gameID) => {
+     return fetch(apiURL + "/game/join", {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
-            gameID,
-            token
+            gameID
         })
-    }).then(res => res.json());
+    }).then(res => {
+        if(res.status >= 200 && res.status <= 299) {
+         return res.json();
+     } else {
+         return Promise.reject(res);
+     }}
+     );
 
 }
 
