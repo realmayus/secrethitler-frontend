@@ -1,0 +1,24 @@
+.fadeInSection {
+  opacity: 0;
+  transform: translateY(200px);
+  visibility: hidden;
+  transition: opacity 1200ms ease-out, transform 600ms ease-out,
+  visibility 1200ms ease-out;
+  will-change: opacity, transform, visibility;
+  &.isVisible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+
+}
+.alternate {
+  &:nth-child(2n) {
+    margin-left: 40px;
+    margin-right: auto;
+  }
+  &:not(:nth-child(2n)) {
+    margin-left: auto;
+    margin-right: 40px;
+  }
+}

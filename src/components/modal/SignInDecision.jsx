@@ -1,24 +1,22 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import styles from "./SignInDecision.module.scss";
 import Modal from "react-modal";
-import {ModalContext, UserContext} from "../../App";
+import { ModalContext, UserContext } from "../../App";
 import ButtonHalf from "../ButtonHalf";
-import {requestTemporaryAccount} from "../../api";
-import {handleRequestError} from "../../util";
+import { requestTemporaryAccount } from "../../api";
+import { handleRequestError } from "../../util";
 
-
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 export default function SignInDecision(props) {
-
     const modalContext = useContext(ModalContext);
     const userContext = useContext(UserContext);
 
     const closeModal = () => {
         modalContext.setOpenModal("");
-    }
+    };
 
-    return(
+    return (
         <Modal
             isOpen={modalContext.openModal === "signInDecision"}
             onRequestClose={closeModal}
@@ -30,15 +28,19 @@ export default function SignInDecision(props) {
             <p>If you don't want to sign in or create an account right now, you can also play with a temporary account.</p>
             <p>Keep in mind that playing anonymously will not save any stats.</p>
             <div className={styles.buttonBox}>
-                <ButtonHalf text="Sign In" onClick={() => modalContext.setOpenModal("signIn")}/>
-                <ButtonHalf text="Play anonymously" onClick={() => {
-                    requestTemporaryAccount().catch(err => handleRequestError(err, modalContext.showAlert)).then( res => {
-                            userContext.setUserData(res);
-                            userContext.setLoggedIn(true);
-                        }
-                    )
-                }}/>
+                <ButtonHalf text="Sign In" onClick={() => modalContext.setOpenModal("signIn")} />
+                <ButtonHalf
+                    text="Play anonymously"
+                    onClick={() => {
+                        requestTemporaryAccount()
+                            .catch(err => handleRequestError(err, modalContext.showAlert))
+                            .then(res => {
+                                userContext.setUserData(res);
+                                userContext.setLoggedIn(true);
+                            });
+                    }}
+                />
             </div>
         </Modal>
-    )
+    );
 }

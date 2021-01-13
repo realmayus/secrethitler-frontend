@@ -27,11 +27,21 @@
 
 .title {
   font-family: $merriweather;
-  color: $background;
-  font-size: 70px;
+  color: $desert;
+  //color: $background;
+  font-size: 60px;
   font-weight: 900;
-  width: 950px;
   text-align: right;
+  display: flex;
+  >span {
+    font-family: $merriweather;
+    color: $desert;
+    //color: $background;
+    text-align: right;
+    font-size: 60px;
+    font-weight: 900;
+
+  }
 }
 
 .headerLeft {
@@ -41,8 +51,10 @@
 }
 
 .buttonBox {
-  > button {
-    margin-left: 40px;
+  display: flex;
+  >div> button {
+    display: inline-block;
+    margin-right: 40px;
   }
 }
 
@@ -59,6 +71,17 @@
   justify-content: center;
 }
 
+.lizardCover {
+  z-index: 3;
+  background-color: $fascist;
+  width: 600px;
+  height: 60vh;
+  position: absolute;
+}
+.lizardCoverAnime {
+  z-index: 4;
+}
+
 .lizard {
   height: 60vh;
 }
@@ -71,7 +94,7 @@
   display: flex;
   align-items: center;
   width: 940px;
-  height: 90%;
+  height: 100%;
   margin-left: 10vh;
 }
 
@@ -85,9 +108,21 @@
 
 .rulesSlide {
   display: flex;
-  height: 97vh;
   justify-content: center;
   align-items: center;
+  margin-bottom: 200px;
+}
+
+.gameInstructionOuterWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.gameInstructionWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
 }
 
 .rulesSection {
@@ -133,36 +168,27 @@
   animation: bounce 3s infinite;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -moz-transform: translateY(-30px);
-    -ms-transform: translateY(-30px);
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-  60% {
-    -moz-transform: translateY(-15px);
-    -ms-transform: translateY(-15px);
-    -webkit-transform: translateY(-15px);
-    transform: translateY(-15px);
-  }
-}
 
 .aboutButton {
   background-color: transparent;
   border: none;
   padding: 0;
-  margin: 0;
   font-size: 16px;
   color: $desert;
   cursor: pointer;
+  margin: 0 15px;
   &:first-child {
-    margin-right: 15px;
+    padding-left: 10px
   }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.footerBottom {
+  border-radius: 11px 11px 0 0;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: $background2;
 }
